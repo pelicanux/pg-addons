@@ -162,7 +162,7 @@
             "Supports NVIDIA RTX 20/30/40/50 & GTX 16, AMD Radeon RX 5000/6000/7000/9000, Steam Deck and Intel Arc."
           ]
         },
-        "icon": "glyph:hub-bolt",
+        "icon": "https://raw.githubusercontent.com/pelicanux/pg-addons/main/addons/anr/icon.png",
         "screenshots": [],
         "links": [
           {
