@@ -87,9 +87,118 @@
       },
       "artifacts": {
         "linux-x86_64": {
-          "url": "https://raw.githubusercontent.com/pelicanux/pg-addons/main/packages/optiscaler-0.2.0-linux-x86_64.pg",
+          "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.0/optiscaler-0.2.0-linux-x86_64.pg",
           "sha256": "ab7decd0f7cb5cd2bc3c62cff3313be5bd654a1690c2e98ed22e2ea4fbb0a9ea",
           "bytes": 3803826
+        }
+      }
+    },
+    {
+      "manifest": {
+        "schema_version": 1,
+        "host_api": 1,
+        "id": "anr",
+        "version": "0.1.0",
+        "name": "Apex Neural Rendering (ANR)",
+        "summary": "Neural frame generation (ANR FG), OptiScaler menu settings and nr-record capture/comparison.",
+        "author": "PeliGames contributors",
+        "license": "GPL-3.0-only",
+        "repository": "https://github.com/pelicanux/PeliGames",
+        "host_version": ">=0.5.5, <0.6.0",
+        "platforms": [
+          "linux-x86_64"
+        ],
+        "entrypoints": {
+          "ui": "ui/index.native.json",
+          "service": "bin/anr-service"
+        },
+        "contributions": [
+          {
+            "target": "settings",
+            "route": "preferences",
+            "title": "Apex Neural Rendering (ANR)",
+            "descriptions": {
+              "en": "Neural frame generation (ANR FG), OptiScaler menu settings and nr-record capture and comparison.",
+              "pt-BR": "Geração neural de quadros (ANR FG), ajustes de menu do OptiScaler e gravação/comparação com nr-record."
+            }
+          },
+          {
+            "target": "game-frame-generation",
+            "route": "game",
+            "title": "Apex Neural Rendering (ANR FG)"
+          }
+        ],
+        "dependencies": {},
+        "capabilities": [
+          "game-files",
+          "component-downloads",
+          "launch-profiles"
+        ],
+        "category": "frame-generation",
+        "component_directory": "components/ANR"
+      },
+      "presentation": {
+        "summary": {
+          "en": "Neural frame generation (ANR FG), OptiScaler menu controls and nr-record capture/comparison.",
+          "pt-BR": "Geração neural de quadros (ANR FG), controles de menu do OptiScaler e gravação/comparação com nr-record."
+        },
+        "description": {
+          "pt-BR": [
+            "Integra o Apex Neural Rendering (ANR FG) para geração neural de quadros até 6× em GPUs NVIDIA, AMD e Intel via Proton.",
+            "Permite instalar o pacote completo (com OptiScaler incluso) ou como provedor de um OptiScaler já instalado, configurar tecla de menu, multiplicador de quadros, corte de cena e gravar/comparar capturas com o nr-record."
+          ],
+          "en": [
+            "Integrates Apex Neural Rendering (ANR FG) for up to 6× neural frame generation on NVIDIA, AMD and Intel GPUs under Proton.",
+            "Install the full package (with bundled OptiScaler) or attach to an existing OptiScaler, configure menu key, frame multiplier, scene cut and record/compare captures with nr-record."
+          ]
+        },
+        "requirements": {
+          "pt-BR": [
+            "Jogo Windows DirectX 12 ou Vulkan executado via Proton.",
+            "Compatível com GPUs NVIDIA RTX 20/30/40/50 e GTX 16, AMD Radeon RX 5000/6000/7000/9000, Steam Deck e Intel Arc."
+          ],
+          "en": [
+            "DirectX 12 or Vulkan Windows game running under Proton.",
+            "Supports NVIDIA RTX 20/30/40/50 & GTX 16, AMD Radeon RX 5000/6000/7000/9000, Steam Deck and Intel Arc."
+          ]
+        },
+        "icon": "glyph:hub-bolt",
+        "screenshots": [],
+        "links": [
+          {
+            "label": {
+              "pt-BR": "Projeto original (Apex Compute ANR)",
+              "en": "Original project (Apex Compute ANR)"
+            },
+            "url": "https://github.com/apex-compute/ANR"
+          },
+          {
+            "label": {
+              "pt-BR": "Site oficial Apex Neural Rendering",
+              "en": "Official Apex Neural Rendering site"
+            },
+            "url": "https://apexcompute.com/neural-rendering"
+          }
+        ],
+        "changes": [
+          {
+            "version": "0.1.0",
+            "notes": {
+              "pt-BR": [
+                "Suporte inicial ao ANR FG Beta (FG-V.B19) completo e add-on, ajustes do menu OptiScaler e ferramentas de gravação/comparação nr-record 1.2."
+              ],
+              "en": [
+                "Initial support for ANR FG Beta (FG-V.B19) full and add-on modes, OptiScaler menu settings and nr-record 1.2 capture/comparison tools."
+              ]
+            }
+          }
+        ]
+      },
+      "artifacts": {
+        "linux-x86_64": {
+          "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.0/anr-0.1.0-linux-x86_64.pg",
+          "sha256": "28686076763e5acb2cf305d1039e15b4695d0033485ee7fe4936066f692d3186",
+          "bytes": 3643580
         }
       }
     }

@@ -1,0 +1,40 @@
+{
+  "summary": {
+    "en": "Manage OptiScaler installations, official channels and per-game settings.",
+    "pt-BR": "Gerencie a instalação do OptiScaler, os canais oficiais e os ajustes por jogo."
+  },
+  "description": {
+    "pt-BR": [
+      "Gerencie o OptiScaler por jogo: instalação, canais de atualização, menu, upscaling, geração de quadros e latência.",
+      "Os ajustes são salvos no INI do jogo. As opções disponíveis dependem dos arquivos e da versão instalada."
+    ],
+    "en": [
+      "Manage OptiScaler installations, official component channels and game configuration."
+    ]
+  },
+  "requirements": {
+    "pt-BR": [
+      "Jogo Windows compatível executado com Proton ou Wine.",
+      "Recursos gráficos dependem da GPU, do jogo e dos componentes instalados."
+    ]
+  },
+  "icon": "glyph:mango-graphics",
+  "screenshots": [],
+  "links": [
+    {
+      "label": {
+        "pt-BR": "Projeto original",
+        "en": "Original project"
+      },
+      "url": "https://github.com/optiscaler/OptiScaler"
+    },
+    {
+      "label": {
+        "pt-BR": "Código da integração PeliGames",
+        "en": "PeliGames integration source"
+      },
+      "url": "https://github.com/pelicanux/PeliGames/tree/main/addons/optiscaler"
+    }
+  ],
+  "changes": []
+}

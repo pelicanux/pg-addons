@@ -1,0 +1,236 @@
+[
+  {
+    "key": "Upscalers.Dx12Upscaler",
+    "label": "dx12",
+    "group": "upscaling",
+    "section": "upscaling",
+    "values": [
+      "auto",
+      "ffx",
+      "xess",
+      "fsr21",
+      "fsr22",
+      "dlss"
+    ]
+  },
+  {
+    "key": "Upscalers.Dx11Upscaler",
+    "label": "dx11",
+    "group": "upscaling",
+    "section": "upscaling",
+    "values": [
+      "auto",
+      "fsr22",
+      "fsr31",
+      "xess",
+      "xess_12",
+      "ffx_12",
+      "dlss"
+    ]
+  },
+  {
+    "key": "Upscalers.VulkanUpscaler",
+    "label": "vulkan",
+    "group": "upscaling",
+    "section": "upscaling",
+    "values": [
+      "auto",
+      "fsr21",
+      "fsr22",
+      "ffx",
+      "xess",
+      "ffx_12",
+      "dlss"
+    ]
+  },
+  {
+    "key": "FSR.UpscalerIndex",
+    "label": "fsr_version",
+    "group": "upscaling",
+    "section": "fsr_settings",
+    "values": [
+      "auto",
+      "0",
+      "1",
+      "2"
+    ]
+  },
+  {
+    "key": "FSR.Fsr4Update",
+    "label": "fsr4_update",
+    "group": "upscaling",
+    "section": "fsr_settings",
+    "values": [
+      "auto",
+      "true",
+      "false"
+    ]
+  },
+  {
+    "key": "FSR.Fsr4ForceEnableInt8",
+    "label": "fsr4_int8",
+    "group": "upscaling",
+    "section": "fsr_settings",
+    "values": [
+      "auto",
+      "true",
+      "false"
+    ]
+  },
+  {
+    "key": "FSR.Fsr4GpuSupport",
+    "label": "fsr4_gpu_support",
+    "group": "upscaling",
+    "section": "fsr_settings",
+    "values": [
+      "auto",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+    ]
+  },
+  {
+    "key": "FSR.Fsr4Model",
+    "label": "fsr4_model",
+    "group": "upscaling",
+    "section": "fsr_settings",
+    "values": [
+      "auto",
+      "0",
+      "1",
+      "2",
+      "3"
+    ]
+  },
+  {
+    "key": "FrameGen.Enabled",
+    "label": "fg_enabled",
+    "group": "framegeneration",
+    "section": "framegeneration",
+    "values": [
+      "false",
+      "true"
+    ]
+  },
+  {
+    "key": "FrameGen.FGInput",
+    "label": "fg_input",
+    "group": "framegeneration",
+    "section": "framegeneration",
+    "values": [
+      "nofg",
+      "dlssg",
+      "nvngxfg",
+      "fsrfg",
+      "upscaler",
+      "fsrfg30",
+      "xefg"
+    ]
+  },
+  {
+    "key": "FrameGen.FGOutput",
+    "label": "fg_output",
+    "group": "framegeneration",
+    "section": "framegeneration",
+    "values": [
+      "nofg",
+      "fsrfg",
+      "xefg",
+      "dlssg"
+    ]
+  },
+  {
+    "key": "FrameGen.FGNvngxReplacement",
+    "label": "fg_provider",
+    "group": "framegeneration",
+    "section": "framegeneration",
+    "values": [
+      "None",
+      "Nukems",
+      "FFX"
+    ]
+  },
+  {
+    "key": "Menu.Scale",
+    "label": "menu_scale",
+    "group": "main",
+    "section": "menu_settings",
+    "values": [
+      "auto",
+      "0.75",
+      "1",
+      "1.25",
+      "1.5",
+      "1.75",
+      "2"
+    ]
+  },
+  {
+    "key": "Menu.ShortcutKey",
+    "label": "menu_key",
+    "group": "main",
+    "section": "menu_settings",
+    "values": [
+      "auto"
+    ]
+  },
+  {
+    "key": "Inputs.EnableDlssInputs",
+    "label": "dlss_inputs",
+    "group": "main",
+    "section": "compatibility_settings",
+    "values": [
+      "auto",
+      "true",
+      "false"
+    ]
+  },
+  {
+    "key": "Spoofing.Dxgi",
+    "label": "gpu_spoofing",
+    "group": "main",
+    "section": "compatibility_settings",
+    "values": [
+      "auto",
+      "true",
+      "false"
+    ]
+  },
+  {
+    "key": "fakenvapi.ForceReflex",
+    "label": "reflex",
+    "group": "latency",
+    "section": "latency",
+    "values": [
+      "auto",
+      "0",
+      "1",
+      "2"
+    ]
+  },
+  {
+    "key": "fakenvapi.ForceLatencyFlex",
+    "label": "latencyflex",
+    "group": "latency",
+    "section": "latency",
+    "values": [
+      "auto",
+      "true",
+      "false"
+    ]
+  },
+  {
+    "key": "fakenvapi.LatencyFlexMode",
+    "label": "latency_mode",
+    "group": "latency",
+    "section": "latency",
+    "values": [
+      "auto",
+      "0",
+      "1",
+      "2"
+    ]
+  }
+]

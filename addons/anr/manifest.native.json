@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "host_api": 1,
+  "id": "anr",
+  "version": "0.1.0",
+  "name": "Apex Neural Rendering (ANR)",
+  "summary": "Neural frame generation (ANR FG), OptiScaler menu settings and nr-record capture/comparison.",
+  "author": "PeliGames contributors",
+  "license": "GPL-3.0-only",
+  "repository": "https://github.com/pelicanux/PeliGames",
+  "host_version": ">=0.5.5, <0.6.0",
+  "platforms": [
+    "linux-x86_64",
+    "linux-aarch64"
+  ],
+  "entrypoints": {
+    "ui": "ui/index.native.json",
+    "service": "bin/anr-service"
+  },
+  "contributions": [
+    {
+      "target": "settings",
+      "route": "preferences",
+      "title": "Apex Neural Rendering (ANR)",
+      "descriptions": {
+        "en": "Neural frame generation (ANR FG), OptiScaler menu settings and nr-record capture and comparison.",
+        "pt-BR": "Geração neural de quadros (ANR FG), ajustes de menu do OptiScaler e gravação/comparação com nr-record."
+      }
+    },
+    {
+      "target": "game-frame-generation",
+      "route": "game",
+      "title": "Apex Neural Rendering (ANR FG)"
+    }
+  ],
+  "dependencies": {},
+  "capabilities": [
+    "game-files",
+    "component-downloads",
+    "launch-profiles"
+  ],
+  "category": "frame-generation",
+  "component_directory": "components/ANR"
+}
