@@ -11,7 +11,7 @@
         "summary": "Manage OptiScaler installations, official component channels and game configuration.",
         "author": "PeliGames contributors",
         "license": "GPL-3.0-only",
-        "repository": "https://github.com/pelicanux/PeliGames",
+        "repository": "https://github.com/optiscaler/OptiScaler",
         "host_version": ">=0.5.5, <0.6.0",
         "platforms": [
           "linux-x86_64"
@@ -70,17 +70,17 @@
         "links": [
           {
             "label": {
-              "pt-BR": "Projeto original",
-              "en": "Original project"
+              "pt-BR": "Projeto original (OptiScaler)",
+              "en": "Original project (OptiScaler)"
             },
             "url": "https://github.com/optiscaler/OptiScaler"
           },
           {
             "label": {
-              "pt-BR": "Código da integração PeliGames",
-              "en": "PeliGames integration source"
+              "pt-BR": "Projeto oficial OptiPatcher",
+              "en": "Official OptiPatcher project"
             },
-            "url": "https://github.com/pelicanux/PeliGames/tree/main/addons/optiscaler"
+            "url": "https://github.com/optiscaler/OptiPatcher"
           }
         ],
         "changes": []
@@ -103,7 +103,7 @@
         "summary": "Neural frame generation (ANR FG), OptiScaler menu settings and nr-record capture/comparison.",
         "author": "PeliGames contributors",
         "license": "GPL-3.0-only",
-        "repository": "https://github.com/pelicanux/PeliGames",
+        "repository": "https://github.com/apex-compute/ANR",
         "host_version": ">=0.5.5, <0.6.0",
         "platforms": [
           "linux-x86_64"
