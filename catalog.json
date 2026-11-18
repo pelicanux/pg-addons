@@ -88,8 +88,8 @@
       "artifacts": {
         "linux-x86_64": {
           "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.0/optiscaler-0.2.0-linux-x86_64.pg",
-          "sha256": "c91a86d7334b3089f3440f5b40ac63f0c21d38efd5234a604354e32384f5637d",
-          "bytes": 3770062
+          "sha256": "43878154eba3810dd903a177dd0504e1b241f2b462020c7f36c25da73deeeffd",
+          "bytes": 3770035
         }
       }
     },
@@ -197,8 +197,8 @@
       "artifacts": {
         "linux-x86_64": {
           "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.0/anr-0.1.0-linux-x86_64.pg",
-          "sha256": "2424bb221e8dbb2d356d77c745cd55481cab4b29f69d7af4522de1112f80c749",
-          "bytes": 3604186
+          "sha256": "2bb35bca5fa41de6ff60892c9badb88bab1be151e9987023723068c44b2c3c35",
+          "bytes": 3604184
         }
       }
     }
