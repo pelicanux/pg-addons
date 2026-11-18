@@ -197,8 +197,8 @@
       "artifacts": {
         "linux-x86_64": {
           "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.0/anr-0.1.0-linux-x86_64.pg",
-          "sha256": "471576f6d51ee09b6cccd3d36ce60a20c48e469fa549d67c284a8d7202308a08",
-          "bytes": 3644969
+          "sha256": "f62b0ee55d23fe3b35844bdba7bf6c98af52a32977be5c4645a3a51c96ef20be",
+          "bytes": 3644970
         }
       }
     }
