@@ -60,14 +60,14 @@ pub fn view(service: &Service, root: &Path, request: ui::Request) -> Result<Valu
             .transpose()?
     };
     let game_scope = request.context.directory.is_some();
-    let mut categories = vec![management::category(
-        &t,
-        &runtime,
-        game.as_ref(),
-        request.context.directory.as_deref(),
-    )];
+    let mut categories = Vec::new();
     if game_scope {
-        categories.extend(fields::categories(&t, game.as_ref()));
+        categories.extend(fields::categories(
+            &t,
+            game.as_ref(),
+            request.context.directory.as_deref(),
+        ));
+        categories.push(management::category(&t, &runtime, true));
         categories.push(Category {
             id: "usage".into(),
             label: t.get("usage"),
@@ -93,6 +93,8 @@ pub fn view(service: &Service, root: &Path, request: ui::Request) -> Result<Valu
                 ],
             }],
         });
+    } else {
+        categories.push(management::category(&t, &runtime, false));
     }
     let result = View {
         title: "OptiScaler".into(),

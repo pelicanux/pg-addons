@@ -56,19 +56,20 @@ pub fn view(_service: &Service, root: &Path, request: ui::Request) -> Result<Val
     };
     let game_scope = request.context.directory.is_some();
 
-    let mut categories = vec![management_category(
-        &t,
-        &rt,
-        game.as_ref(),
-        request.context.directory.as_deref(),
-    )];
-
+    let mut categories = Vec::new();
     if game_scope {
-        categories.push(anr_fg_category(&t, game.as_ref()));
+        categories.push(anr_fg_category(
+            &t,
+            &rt,
+            game.as_ref(),
+            request.context.directory.as_deref(),
+        ));
         categories.push(optiscaler_menu_category(&t, game.as_ref()));
         categories.push(record_category(&t, &rt, game.as_ref()));
+        categories.push(management_category(&t, &rt));
         categories.push(usage_category(&t, game.as_ref()));
     } else {
+        categories.push(management_category(&t, &rt));
         categories.push(record_category(&t, &rt, None));
     }
 
@@ -84,109 +85,112 @@ pub fn view(_service: &Service, root: &Path, request: ui::Request) -> Result<Val
     serde_json::to_value(result).map_err(|_| error("Cannot encode native view"))
 }
 
-fn management_category(
+fn game_install_controls(
     t: &Text,
     rt: &RuntimeInfo,
-    game: Option<&GameState>,
-    directory: Option<&Path>,
-) -> Category {
+    game: &GameState,
+    directory: &Path,
+) -> Vec<Control> {
     let mut controls = Vec::new();
-    if let (Some(directory), Some(game)) = (directory, game) {
-        let status_label = match game.mode {
-            InstallMode::Full => format!(
-                "{} · {}",
-                t.get("installed_full"),
-                game.proxy.as_deref().unwrap_or("dxgi.dll")
-            ),
-            InstallMode::Addon => t.get("installed_addon"),
-            InstallMode::None => t.get("not_installed"),
-        };
-        controls.push(text_ctrl("ANR FG".into(), status_label));
-        if game.mode == InstallMode::None {
-            controls.push(Control::Select {
-                id: "proxy".into(),
-                label: t.get("proxy"),
-                value: "dxgi.dll".into(),
-                choices: ["dxgi.dll", "winmm.dll", "version.dll"]
-                    .into_iter()
-                    .map(|v| Choice {
-                        label: v.into(),
-                        value: v.into(),
-                    })
-                    .collect(),
-                enabled: true,
-            });
+    let status_label = match game.mode {
+        InstallMode::Full => format!(
+            "{} · {}",
+            t.get("installed_full"),
+            game.proxy.as_deref().unwrap_or("dxgi.dll")
+        ),
+        InstallMode::Addon => t.get("installed_addon"),
+        InstallMode::None => t.get("not_installed"),
+    };
+    controls.push(text_ctrl("ANR FG".into(), status_label));
+    if game.mode == InstallMode::None {
+        controls.push(Control::Select {
+            id: "proxy".into(),
+            label: t.get("proxy"),
+            value: "dxgi.dll".into(),
+            choices: ["dxgi.dll", "winmm.dll", "version.dll"]
+                .into_iter()
+                .map(|v| Choice {
+                    label: v.into(),
+                    value: v.into(),
+                })
+                .collect(),
+            enabled: true,
+        });
+        controls.push(btn_ctrl(
+            "install",
+            t.get("install_full"),
+            rt.anr_ready,
+            false,
+            None,
+        ));
+        if game.has_optiscaler_ini {
             controls.push(btn_ctrl(
-                "install",
-                t.get("install_full"),
+                "install-addon",
+                t.get("install_addon"),
                 rt.anr_ready,
                 false,
                 None,
-            ));
-            if game.has_optiscaler_ini {
-                controls.push(btn_ctrl(
-                    "install-addon",
-                    t.get("install_addon"),
-                    rt.anr_ready,
-                    false,
-                    None,
-                ));
-            }
-            controls.push(text_ctrl(String::new(), t.get("configuration_locked")));
-        } else {
-            controls.push(btn_ctrl(
-                "upgrade-game",
-                t.get("upgrade_game"),
-                rt.anr_ready,
-                false,
-                None,
-            ));
-            controls.push(btn_ctrl(
-                "remove-game",
-                t.get("remove_game"),
-                true,
-                true,
-                Some(t.get("remove_game_confirm")),
             ));
         }
-        controls.push(Control::Path {
-            label: t.get("destination"),
-            path: directory.into(),
-        });
-        controls.push(Control::Inventory {
-            label: t.get("inventory_game"),
-            hint: t.get("inventory_hint"),
-            items: vec![
-                StatusItem {
-                    label: "ANR FG (nvngx_dlssg.dll)".into(),
-                    value: if game.mode != InstallMode::None {
-                        t.get("present")
-                    } else {
-                        t.get("absent")
-                    },
-                    present: game.mode != InstallMode::None,
-                },
-                StatusItem {
-                    label: "OptiScaler.ini".into(),
-                    value: if game.has_optiscaler_ini {
-                        t.get("present")
-                    } else {
-                        t.get("absent")
-                    },
-                    present: game.has_optiscaler_ini,
-                },
-                StatusItem {
-                    label: "nr-record (Captura)".into(),
-                    value: if game.record_installed {
-                        t.get("present")
-                    } else {
-                        t.get("absent")
-                    },
-                    present: game.record_installed,
-                },
-            ],
-        });
+        controls.push(text_ctrl(String::new(), t.get("configuration_locked")));
+    } else {
+        controls.push(btn_ctrl(
+            "upgrade-game",
+            t.get("upgrade_game"),
+            rt.anr_ready,
+            false,
+            None,
+        ));
+        controls.push(btn_ctrl(
+            "remove-game",
+            t.get("remove_game"),
+            true,
+            true,
+            Some(t.get("remove_game_confirm")),
+        ));
     }
+    controls.push(Control::Path {
+        label: t.get("destination"),
+        path: directory.into(),
+    });
+    controls.push(Control::Inventory {
+        label: t.get("inventory_game"),
+        hint: t.get("inventory_hint"),
+        items: vec![
+            StatusItem {
+                label: "ANR FG (nvngx_dlssg.dll)".into(),
+                value: if game.mode != InstallMode::None {
+                    t.get("present")
+                } else {
+                    t.get("absent")
+                },
+                present: game.mode != InstallMode::None,
+            },
+            StatusItem {
+                label: "OptiScaler.ini".into(),
+                value: if game.has_optiscaler_ini {
+                    t.get("present")
+                } else {
+                    t.get("absent")
+                },
+                present: game.has_optiscaler_ini,
+            },
+            StatusItem {
+                label: "nr-record (Captura)".into(),
+                value: if game.record_installed {
+                    t.get("present")
+                } else {
+                    t.get("absent")
+                },
+                present: game.record_installed,
+            },
+        ],
+    });
+    controls
+}
+
+fn management_category(t: &Text, rt: &RuntimeInfo) -> Category {
+    let mut controls = Vec::new();
 
     let mut anr_btns = vec![btn_ctrl(
         "download-anr",
@@ -297,11 +301,7 @@ fn management_category(
         id: "management".into(),
         label: t.get("management"),
         icon: "hub-download".into(),
-        hint: t.get(if directory.is_some() {
-            "management_hint"
-        } else {
-            "runtime_hint"
-        }),
+        hint: t.get("runtime_hint"),
         enabled: true,
         sections: vec![Section {
             columns: false,
@@ -311,7 +311,12 @@ fn management_category(
     }
 }
 
-fn anr_fg_category(t: &Text, game: Option<&GameState>) -> Category {
+fn anr_fg_category(
+    t: &Text,
+    rt: &RuntimeInfo,
+    game: Option<&GameState>,
+    directory: Option<&Path>,
+) -> Category {
     let enabled = game.is_some_and(|g| g.mode != InstallMode::None);
     let val = |key: &str, default: &str| -> String {
         game.and_then(|g| g.nr_fg.get(key))
@@ -323,7 +328,15 @@ fn anr_fg_category(t: &Text, game: Option<&GameState>) -> Category {
     let scene_cut = val("scene_cut", "1");
     let nits = val("nits_per_unit", "80");
 
-    let sections = vec![
+    let mut sections = Vec::new();
+    if let (Some(directory), Some(game)) = (directory, game) {
+        sections.push(Section {
+            columns: false,
+            title: String::new(),
+            controls: game_install_controls(t, rt, game, directory),
+        });
+    }
+    sections.extend([
         Section {
             columns: true,
             title: t.get("section_anr_core"),
@@ -423,14 +436,14 @@ fn anr_fg_category(t: &Text, game: Option<&GameState>) -> Category {
                 },
             ],
         },
-    ];
+    ]);
 
     Category {
         id: "anr-fg".into(),
         label: t.get("anr_fg"),
         icon: "bolt".into(),
         hint: t.get("anr_fg_hint"),
-        enabled,
+        enabled: true,
         sections,
     }
 }

@@ -71,14 +71,15 @@ fn native_flow_gates_configuration_reads_ini_and_roundtrips_install_edit_remove(
             .map(|c| c.id.as_str())
             .collect::<Vec<_>>(),
         [
-            "management",
             "main",
             "upscaling",
             "framegeneration",
             "latency",
+            "management",
             "usage"
         ]
     );
+    assert!(view.categories[0].enabled);
     assert!(!view.categories[1].enabled);
     assert!(!f.game.join("OptiScaler.ini").exists());
     let installed = f
@@ -96,9 +97,9 @@ fn native_flow_gates_configuration_reads_ini_and_roundtrips_install_edit_remove(
         .contains("winmm=n,b"));
     let view = f.view(&mut s, "pt-BR");
     assert!(view.categories[1].enabled);
-    assert_eq!(view.categories[1].label, "Menu e compatibilidade");
+    assert_eq!(view.categories[0].label, "Menu e compatibilidade");
     ui::validate(&view).unwrap();
-    let scale = view.categories[1]
+    let scale = view.categories[0]
         .sections
         .iter()
         .flat_map(|section| &section.controls)
@@ -134,7 +135,7 @@ fn native_flow_gates_configuration_reads_ini_and_roundtrips_install_edit_remove(
         .is_err());
     assert_eq!(fs::read(f.game.join("OptiScaler.ini")).unwrap(), before);
     let en = f.view(&mut s, "en");
-    assert_eq!(en.categories[0].label, "Manage");
+    assert_eq!(en.categories[4].label, "Manage");
     fs::write(f.game.join("save.dat"), "keep save").unwrap();
     let removed = f
         .call(&mut s, "native.action", "en", Some("remove-game"), None)

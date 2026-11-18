@@ -7,7 +7,11 @@ struct Field {
     section: String,
     values: Vec<String>,
 }
-pub(super) fn categories(t: &Text, game: Option<&optiscaler::State>) -> Vec<Category> {
+pub(super) fn categories(
+    t: &Text,
+    game: Option<&optiscaler::State>,
+    directory: Option<&Path>,
+) -> Vec<Category> {
     let fields: Vec<Field> = serde_json::from_str(include_str!("../../../config/fields.json"))
         .expect("native OptiScaler fields");
     [
@@ -25,6 +29,16 @@ pub(super) fn categories(t: &Text, game: Option<&optiscaler::State>) -> Vec<Cate
         let enabled =
             ready && (id != "framegeneration" || game.is_some_and(|g| g.framegen_available));
         let mut sections: Vec<Section> = Vec::new();
+        if id == "main" {
+            let install_controls = super::management::game_controls(t, game, directory);
+            if !install_controls.is_empty() {
+                sections.push(Section {
+                    columns: false,
+                    title: String::new(),
+                    controls: install_controls,
+                });
+            }
+        }
         if let Some(game) = game {
             for field in fields.iter().filter(|f| f.group == id) {
                 if field.key.starts_with("FSR.Fsr4") && !game.settings.contains_key(&field.key) {
@@ -171,7 +185,7 @@ pub(super) fn categories(t: &Text, game: Option<&optiscaler::State>) -> Vec<Cate
                     _ => "latency_hint",
                 }
             }),
-            enabled: ready,
+            enabled: id == "main" || ready,
             sections,
         }
     })

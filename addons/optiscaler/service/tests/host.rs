@@ -116,8 +116,8 @@ async fn verified_service_reads_a_game_and_prepares_edits_without_mutating_it() 
     let native=f.call(&host,"native.view",json!({"context":{"language":"pt-BR","directory":game,"native_game":false},"action":null})).await.unwrap();
     let view: peligames_addon_kit::native_ui::View = serde_json::from_value(native).unwrap();
     peligames_addon_kit::native_ui::validate(&view).unwrap();
-    assert_eq!(view.categories[1].label, "Menu e compatibilidade");
-    assert!(view.categories[1].enabled);
+    assert_eq!(view.categories[0].label, "Menu e compatibilidade");
+    assert!(view.categories[0].enabled);
 
     let status = &host.statuses()[0];
     assert_eq!(status.phase, Phase::Running);

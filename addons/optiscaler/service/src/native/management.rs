@@ -1,10 +1,9 @@
 use super::*;
-pub(super) fn category(
+pub(super) fn game_controls(
     t: &Text,
-    runtime: &runtime::RuntimeState,
     game: Option<&optiscaler::State>,
     directory: Option<&Path>,
-) -> Category {
+) -> Vec<Control> {
     let mut controls = Vec::new();
     if let Some(directory) = directory {
         if let Some(game) = game {
@@ -91,6 +90,11 @@ pub(super) fn category(
             }
         }
     }
+    controls
+}
+
+pub(super) fn category(t: &Text, runtime: &runtime::RuntimeState, game_scope: bool) -> Category {
+    let mut controls = Vec::new();
     controls.push(text(
         "OptiScaler".into(),
         format!(
@@ -108,11 +112,7 @@ pub(super) fn category(
     ));
     controls.push(Control::Row {
         label: t.get("runtime_files"),
-        text: t.get(if directory.is_some() {
-            "package_game_hint"
-        } else {
-            "channel_games_hint"
-        }),
+        text: t.get("channel_games_hint"),
         controls: vec![
             button(
                 "download",
@@ -185,17 +185,13 @@ pub(super) fn category(
 
     Category {
         id: "management".into(),
-        label: if directory.is_some() {
+        label: if game_scope {
             t.get("management")
         } else {
             "OptiScaler".into()
         },
         icon: "hub-download".into(),
-        hint: t.get(if directory.is_some() {
-            "management_hint"
-        } else {
-            "runtime_hint"
-        }),
+        hint: t.get("runtime_hint"),
         enabled: true,
         sections: vec![Section {
             columns: false,
