@@ -6,7 +6,7 @@
         "schema_version": 1,
         "host_api": 1,
         "id": "optiscaler",
-        "version": "0.2.0",
+        "version": "0.2.1",
         "name": "OptiScaler",
         "summary": "Manage OptiScaler installations, official component channels and game configuration.",
         "author": "PeliGames contributors",
@@ -33,6 +33,7 @@
           {
             "target": "game-mods",
             "route": "game",
+            "reset_category": "reset",
             "title": "Upscaling, frame generation and compatibility"
           }
         ],
@@ -87,9 +88,9 @@
       },
       "artifacts": {
         "linux-x86_64": {
-          "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.0/optiscaler-0.2.0-linux-x86_64.pg",
-          "sha256": "43878154eba3810dd903a177dd0504e1b241f2b462020c7f36c25da73deeeffd",
-          "bytes": 3770035
+          "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.1/optiscaler-0.2.1-linux-x86_64.pg",
+          "sha256": "590f71d58e1e88a216326d7738ae633b84e3ad915f363312a8ffe7264f8cd9a0",
+          "bytes": 3211524
         }
       }
     },
@@ -98,7 +99,7 @@
         "schema_version": 1,
         "host_api": 1,
         "id": "anr",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "name": "Apex Neural Rendering (ANR)",
         "summary": "Neural frame generation (ANR FG), OptiScaler menu settings and nr-record capture/comparison.",
         "author": "PeliGames contributors",
@@ -125,6 +126,7 @@
           {
             "target": "game-frame-generation",
             "route": "game",
+            "reset_category": "reset",
             "title": "Apex Neural Rendering (ANR FG)"
           }
         ],
@@ -196,9 +198,282 @@
       },
       "artifacts": {
         "linux-x86_64": {
-          "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.0/anr-0.1.0-linux-x86_64.pg",
-          "sha256": "2bb35bca5fa41de6ff60892c9badb88bab1be151e9987023723068c44b2c3c35",
-          "bytes": 3604184
+          "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.1/anr-0.1.1-linux-x86_64.pg",
+          "sha256": "95453f395f7acedc1839206c6d9291249bfa4f985a78e8084cf260fae2e8f202",
+          "bytes": 3070266
+        }
+      }
+    },
+    {
+      "manifest": {
+        "schema_version": 1,
+        "host_api": 1,
+        "id": "nexus",
+        "version": "0.1.21",
+        "name": "Nexus Mods",
+        "summary": "Manage Nexus Mods, collections, load order, FOMOD/BAIN installers, and mod backups.",
+        "author": "PeliGames contributors",
+        "license": "GPL-3.0-only",
+        "repository": "https://www.nexusmods.com",
+        "host_version": ">=0.5.5, <0.6.0",
+        "platforms": [
+          "linux-x86_64"
+        ],
+        "entrypoints": {
+          "ui": "ui/index.native.json",
+          "service": "bin/nexus-service"
+        },
+        "contributions": [
+          {
+            "target": "settings",
+            "route": "preferences",
+            "title": "Nexus Mods",
+            "descriptions": {
+              "en": "Connect your Nexus Mods account, manage global mod backups, and register nxm:// links.",
+              "pt-BR": "Conecte sua conta do Nexus Mods, gerencie backups globais de mods e registre links nxm://."
+            }
+          },
+          {
+            "target": "game-mods",
+            "route": "game",
+            "reset_category": "management",
+            "title": "Mods, collections, load order and game recovery"
+          }
+        ],
+        "dependencies": {},
+        "capabilities": [
+          "game-files",
+          "component-downloads",
+          "launch-profiles",
+          "background-service"
+        ],
+        "category": "mods",
+        "component_directory": "components/addons/nexus"
+      },
+      "presentation": {
+        "summary": {
+          "en": "Manage Nexus Mods, collections, load order, FOMOD/BAIN installers, and mod backups.",
+          "pt-BR": "Gerencie mods do Nexus, coleções, ordem de plugins, instaladores FOMOD/BAIN e backups."
+        },
+        "description": {
+          "pt-BR": [
+            "Gerencie seus mods locais e do Nexus Mods por jogo: instalação de arquivos, assistente FOMOD/BAIN, implantação atômica (symlink, hardlink, cópia ou VFS), ordem de plugins com LOOT, perfis, saves e backup automático.",
+            "Inclui fila de downloads via links nxm:// com verificação MD5, coleções do Nexus e recuperação durável de metadados."
+          ],
+          "en": [
+            "Manage local and Nexus Mods per game: archive installation, FOMOD/BAIN wizards, atomic deployment (symlink, hardlink, copy, or VFS), LOOT plugin sorting, profiles, saves, and automatic backups.",
+            "Includes nxm:// download queue with MD5 verification, Nexus Collections, and durable metadata recovery."
+          ]
+        },
+        "requirements": {
+          "pt-BR": [
+            "Conta do Nexus Mods opcional (OAuth no navegador) para catálogo, coleções e links nxm://; mods locais funcionam offline."
+          ],
+          "en": [
+            "Optional Nexus Mods account (browser OAuth) for catalog, collections, and nxm:// links; local mods work offline."
+          ]
+        },
+        "icon": "https://raw.githubusercontent.com/pelicanux/pg-addons/main/addons/nexus/icon.svg",
+        "screenshots": [],
+        "links": [
+          {
+            "label": {
+              "pt-BR": "Nexus Mods (Site oficial)",
+              "en": "Nexus Mods (Official website)"
+            },
+            "url": "https://www.nexusmods.com"
+          }
+        ],
+        "changes": []
+      },
+      "artifacts": {
+        "linux-x86_64": {
+          "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.1/nexus-0.1.21-linux-x86_64.pg",
+          "sha256": "f4426c35c6819cd985544d52f7be83b1c2d53ed647f0147eae97e9b6d2d21f4d",
+          "bytes": 8094573
+        }
+      }
+    },
+    {
+      "manifest": {
+        "schema_version": 1,
+        "host_api": 1,
+        "id": "mangohud",
+        "version": "0.1.9",
+        "name": "MangoHud",
+        "summary": "Manage MangoHud monitoring, frame limits and benchmarks.",
+        "author": "PeliGames contributors",
+        "license": "GPL-3.0-only",
+        "repository": "https://github.com/flightlessmango/MangoHud",
+        "host_version": ">=0.5.5, <0.6.0",
+        "platforms": [
+          "linux-x86_64"
+        ],
+        "entrypoints": {
+          "ui": "ui/index.native.json",
+          "service": "bin/mangohud-service"
+        },
+        "contributions": [
+          {
+            "target": "settings",
+            "route": "preferences",
+            "title": "MangoHud"
+          },
+          {
+            "target": "game-monitoring",
+            "route": "game",
+            "reset_category": "reset",
+            "title": "Monitoramento"
+          }
+        ],
+        "dependencies": {},
+        "capabilities": [
+          "component-downloads",
+          "game-files",
+          "launch-profiles"
+        ],
+        "category": "mods",
+        "component_directory": "components/addons/mangohud"
+      },
+      "presentation": {
+        "summary": {
+          "pt-BR": "FPS, sensores, limites de quadros e benchmarks.",
+          "en": "FPS, sensors, frame limits and benchmarks."
+        },
+        "description": {
+          "pt-BR": [
+            "Configure o MangoHud para todos os jogos ou use um perfil específico por jogo. Consulte benchmarks gravados e importe arquivos CSV."
+          ],
+          "en": [
+            "Configure MangoHud globally or use a per-game profile. Review recorded benchmarks and import CSV files."
+          ]
+        },
+        "requirements": {
+          "pt-BR": [
+            "O monitoramento usa o MangoHud instalado no sistema. O add-on oferece a instalação quando for necessário."
+          ],
+          "en": [
+            "Monitoring uses the system MangoHud installation. The add-on offers to install it when needed."
+          ]
+        },
+        "links": [
+          {
+            "label": {
+              "pt-BR": "Projeto original",
+              "en": "Original project"
+            },
+            "url": "https://github.com/flightlessmango/MangoHud"
+          }
+        ]
+      },
+      "artifacts": {
+        "linux-x86_64": {
+          "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.1/mangohud-0.1.9-linux-x86_64.pg",
+          "sha256": "f4656469287a53960ece99013ef075bd3382cd443efb1eb56b47ba05594f5fb5",
+          "bytes": 4821637
+        }
+      }
+    },
+    {
+      "manifest": {
+        "schema_version": 1,
+        "host_api": 1,
+        "id": "dlssnr-mochizuki",
+        "version": "0.1.7",
+        "name": "DLSSNR · Mochizuki",
+        "summary": "Neural Rendering for Radeon GPUs through DLSSNR-AMD.",
+        "author": "PeliGames contributors",
+        "license": "GPL-3.0-only",
+        "repository": "https://gitlab.com/mochizuki0323/DLSSNR-AMD",
+        "host_version": ">=0.5.5, <0.7.0",
+        "platforms": [
+          "linux-x86_64"
+        ],
+        "entrypoints": {
+          "ui": "ui/index.native.json",
+          "service": "bin/dlssnr-service"
+        },
+        "contributions": [
+          {
+            "target": "settings",
+            "route": "preferences",
+            "title": "DLSSNR · Mochizuki",
+            "descriptions": {
+              "en": "Neural Rendering for AMD GPUs through OptiScaler, ReShade, Vulkan or DX9.",
+              "pt-BR": "Renderização neural para GPUs AMD via OptiScaler, ReShade, Vulkan ou DX9."
+            }
+          },
+          {
+            "target": "game-mods",
+            "route": "game",
+            "title": "Mochizuki",
+            "descriptions": {
+              "en": "Neural Rendering for AMD GPUs through OptiScaler, ReShade, Vulkan or DX9.",
+              "pt-BR": "Renderização neural para GPUs AMD via OptiScaler, ReShade, Vulkan ou DX9."
+            },
+            "reset_category": "reset"
+          },
+          {
+            "target": "game-overview",
+            "route": "overview",
+            "title": "DLSSNR"
+          }
+        ],
+        "dependencies": {},
+        "capabilities": [
+          "game-files",
+          "component-downloads",
+          "launch-profiles"
+        ],
+        "category": "mods",
+        "component_directory": "components/Mods/DLSSNR/backend-files",
+        "group": "dlssnr"
+      },
+      "presentation": {
+        "summary": {
+          "en": "Neural Rendering for AMD GPUs through OptiScaler, ReShade, Vulkan or DX9.",
+          "pt-BR": "Renderização neural para GPUs AMD via OptiScaler, ReShade, Vulkan ou DX9."
+        },
+        "description": {
+          "pt-BR": [
+            "Prepare a renderização neural DLSSNR-AMD e configure sua instalação por jogo.",
+            "A integração gerencia o backend, os modelos e as rotas compatíveis de instalação."
+          ],
+          "en": [
+            "Neural Rendering for Radeon GPUs through DLSSNR-AMD."
+          ]
+        },
+        "requirements": {
+          "pt-BR": [
+            "GPU AMD e backend compatíveis.",
+            "Confira a API gráfica, a arquitetura e os requisitos da versão escolhida."
+          ]
+        },
+        "icon": "glyph:hub-neural",
+        "screenshots": [],
+        "links": [
+          {
+            "label": {
+              "pt-BR": "Projeto original",
+              "en": "Original project"
+            },
+            "url": "https://gitlab.com/mochizuki0323/DLSSNR-AMD"
+          },
+          {
+            "label": {
+              "pt-BR": "Código da integração PeliGames",
+              "en": "PeliGames integration source"
+            },
+            "url": "https://github.com/pelicanux/PeliGames/tree/main/addons/dlssnr-mochizuki"
+          }
+        ],
+        "changes": []
+      },
+      "artifacts": {
+        "linux-x86_64": {
+          "url": "https://github.com/pelicanux/pg-addons/releases/download/v0.1.1/dlssnr-mochizuki-0.1.7-linux-x86_64.pg",
+          "sha256": "3bceb44408543dde3871d99ff91eb6f59985cb859bacb116ca4552e4403d68b8",
+          "bytes": 3048142
         }
       }
     }
